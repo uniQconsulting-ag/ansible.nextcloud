@@ -24,7 +24,9 @@ CERT_COPY="{{nextcloud_nginx_ssl_cert_crt}}"
 CA_CHAIN_COPY="{{nextcloud_nginx_ssl_cert_ca_chain}}"
 COPY_OWNER="root:nginx"
 
-mkdir -p ${BASE_DIR}/{ca,servers,tmp}
+mkdir -p ${CA_DIR}/ca
+mkdir -p ${BASE_DIR}/{servers,tmp}
+
 cd "${BASE_DIR}" || exit 1
 if [ -f "${CA_DIR}/ca/root.key.pem" ]
 then
