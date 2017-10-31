@@ -1,0 +1,45 @@
+---
+- hosts: vm04
+  vars:
+  - nextcloud_fqdn: nc.office.bitbull.ch
+  - nextcloud_mysql_db: nextcloud
+  - nextcloud_mysql_root_password: '.R00T.'
+  - nextcloud_mysql_db_password: 'krypt0n.'
+  - nextcloud_admin_pw: ChangeMe.
+  roles:
+  - role: joe-speedboat.mariadb
+    mariadb_secure_installation: yes
+    mariadb_root_password: "{{ nextcloud_mysql_root_password }}"
+    mariadb_databases:
+    - name: "{{ nextcloud_mysql_db }}"
+    mariadb_users_create:
+    - name: "{{ nextcloud_mysql_db }}"
+      hosts:
+      - localhost
+      password: "{{ nextcloud_mysql_db_password }}"
+      privs:
+      - "{{ nextcloud_mysql_db }}.*:ALL"
+      append_privs: no
+  - role: joe-speedboat.nextcloud
+  tasks:
+  - name: install firewalld
+    yum:
+      name: firewalld
+      state: present
+  - name: start firewalld
+    service:
+      name: firewalld
+      enabled: yes
+      state: started
+  - name: open https port on firewalld
+    firewalld:
+      service: https
+      permanent: true
+      state: enabled
+  - name: enable firewalld
+    service:
+      name: firewalld
+      enabled: yes
+      state: restarted
+...
+
