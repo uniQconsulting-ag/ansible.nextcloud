@@ -1,7 +1,7 @@
 ---
 - hosts: vm06
   vars:
-  - nextcloud_fqdn: nc.office.bitbull.ch
+  - nextcloud_fqdn: '{{ ansible_fqdn }}'
   - nextcloud_mysql_db: nextcloud
   - nextcloud_mysql_root_password: '.R00T.'
   - nextcloud_mysql_db_password: 'krypt0n.'
@@ -45,6 +45,11 @@
   - name: open https port on firewalld
     firewalld:
       service: https
+      permanent: true
+      state: enabled
+  - name: open https collabora port on firewalld
+    firewalld:
+      port: 8443/tcp
       permanent: true
       state: enabled
   - name: enable firewalld
