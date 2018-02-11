@@ -16,7 +16,7 @@ Role Variables
 ```
 nextcloud_nginx_ssl_cert_host: '{{ nextcloud_fqdn }}'
 nextcloud_repo_url: https://download.nextcloud.com/server/releases
-nextcloud_version:  nextcloud-12.0.3
+nextcloud_version:  nextcloud-13.0.0
 nextcloud_fqdn: "{{ansible_fqdn}}"
 nextcloud_use_https: true
 nextcloud_nginx_ssl_cert_days: 3650
