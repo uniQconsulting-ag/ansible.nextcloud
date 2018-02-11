@@ -1,12 +1,12 @@
 ---
-- hosts: vm06
+- hosts: vm04
   vars:
-  - nextcloud_fqdn: nc.office.bitbull.ch
+  - nextcloud_fqdn: vm04.office.bitbull.ch
   - nextcloud_mysql_db: nextcloud
   - nextcloud_mysql_root_password: '.R00T.'
   - nextcloud_mysql_db_password: 'krypt0n.'
   - nextcloud_admin_pw: ChangeMe.
-  - nextcloud_version:  nextcloud-12.0.4
+  - nextcloud_version:  nextcloud-13.0.0
   - nextcloud_nginx_ssl_cert_dir: /etc/nginx
   - nextcloud_nginx_ssl_cert_key: "{{nextcloud_nginx_ssl_cert_dir}}/{{nextcloud_fqdn}}_key.pem"
   - nextcloud_nginx_ssl_cert_crt: "{{nextcloud_nginx_ssl_cert_dir}}/{{nextcloud_fqdn}}_crt.pem"
