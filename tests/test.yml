@@ -7,7 +7,7 @@
   - nextcloud_mysql_db_password: 'krypt0n.'
   - nextcloud_admin_pw: ChangeMe.
   roles:
-  - role: role_under_test
+  - role: joe-speedboat.mariadb
     mariadb_secure_installation: yes
     mariadb_root_password: "{{ nextcloud_mysql_root_password }}"
     mariadb_databases:
@@ -20,7 +20,7 @@
       privs:
       - "{{ nextcloud_mysql_db }}.*:ALL"
       append_privs: no
-  - role: joe-speedboat.nextcloud
+  - role: role_under_test
   pre_tasks:
   - name: install role dep joe-speedboat.mariadb
     shell: ansible-galaxy install -p ./roles joe-speedboat.mariadb
