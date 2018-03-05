@@ -1,0 +1,45 @@
+---
+- hosts: all
+  vars:
+  - nextcloud_fqdn: cloud.domain.com
+  - nextcloud_mysql_db: nextcloud
+  - nextcloud_mysql_root_password: '.R00T.'
+  - nextcloud_mysql_db_password: 'krypt0n.'
+  - nextcloud_admin_pw: ChangeMe.
+  roles:
+  - role: role_under_test
+    mariadb_secure_installation: yes
+    mariadb_root_password: "{{ nextcloud_mysql_root_password }}"
+    mariadb_databases:
+    - name: "{{ nextcloud_mysql_db }}"
+    mariadb_users_create:
+    - name: "{{ nextcloud_mysql_db }}"
+      hosts:
+      - localhost
+      password: "{{ nextcloud_mysql_db_password }}"
+      privs:
+      - "{{ nextcloud_mysql_db }}.*:ALL"
+      append_privs: no
+  - role: joe-speedboat.nextcloud
+  pre_tasks:
+  - name: install role dep joe-speedboat.mariadb
+    shell: ansible-galaxy install -p ./roles joe-speedboat.mariadb
+    changed_when: False
+  tasks:
+  - name: install firewalld
+    yum:
+      name: firewalld
+      state: present
+  - name: start firewalld
+    service:
+      name: firewalld
+      enabled: yes
+      state: started
+  - name: open https port on firewalld
+    firewalld:
+      service: https
+      permanent: true
+      immediate: true
+      state: enabled
+...
+
