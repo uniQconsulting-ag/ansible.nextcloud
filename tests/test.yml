@@ -6,13 +6,6 @@
   - nextcloud_mysql_root_password: '.R00T.'
   - nextcloud_mysql_db_password: 'krypt0n.'
   - nextcloud_admin_pw: ChangeMe.
-  pre_tasks:
-  - name: install role deps
-    shell: "{{ item }}"
-    changed_when: False
-    with_items:
-    - ansible-galaxy install -p ./roles joe-speedboat.nextcloud
-    - ansible-galaxy install -p ./roles joe-speedboat.mariadb
   roles:
   - role: joe-speedboat.mariadb
     mariadb_secure_installation: yes
