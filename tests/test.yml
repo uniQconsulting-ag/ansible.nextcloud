@@ -6,6 +6,10 @@
   - nextcloud_mysql_root_password: '.R00T.'
   - nextcloud_mysql_db_password: 'krypt0n.'
   - nextcloud_admin_pw: ChangeMe.
+  pre_tasks:
+  - name: install role dep joe-speedboat.mariadb
+    shell: ansible-galaxy install -p ./roles joe-speedboat.mariadb
+    changed_when: False
   roles:
   - role: joe-speedboat.mariadb
     mariadb_secure_installation: yes
@@ -21,10 +25,6 @@
       - "{{ nextcloud_mysql_db }}.*:ALL"
       append_privs: no
   - role: role_under_test
-  pre_tasks:
-  - name: install role dep joe-speedboat.mariadb
-    shell: ansible-galaxy install -p ./roles joe-speedboat.mariadb
-    changed_when: False
   tasks:
   - name: install firewalld
     yum:
