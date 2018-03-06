@@ -24,7 +24,7 @@
   shell: cat {{nextcloud_nginx_ssl_cert_ca_chain}} >> {{nextcloud_cert_store}}
   changed_when: False
 
-- include: 'permissions.yml'
+- include_tasks: 'permissions.yml'
 
 - name: installation - ensure nextcloud installation is finished
   command: 'php {{ nextcloud_webroot }}/occ maintenance:install --database "mysql" --database-name "{{ nextcloud_mysql_db }}"  --database-user "{{ nextcloud_mysql_db }}" --database-pass "{{ nextcloud_mysql_db_password }}" --admin-user "{{ nextcloud_admin_user }}" --admin-pass "{{ nextcloud_admin_pw }}" --data-dir "{{ nextcloud_dataroot }}"'
