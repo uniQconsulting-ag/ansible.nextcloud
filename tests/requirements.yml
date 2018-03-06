@@ -1,3 +1,5 @@
 # from galaxy
 - src: joe-speedboat.mariadb
+  version: master
 - src: joe-speedboat.nextcloud
+  version: master
