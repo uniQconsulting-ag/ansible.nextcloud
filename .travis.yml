@@ -3,6 +3,7 @@ services: docker
 
 env:
   - distro: centos7
+    test_idempotence: false
 
 script:
   # Download test shim.
