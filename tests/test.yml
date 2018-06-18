@@ -21,21 +21,5 @@
       - "{{ nextcloud_mysql_db }}.*:ALL"
       append_privs: no
   - role: joe-speedboat.nextcloud
-  tasks:
-  - name: install firewalld
-    yum:
-      name: firewalld
-      state: present
-  - name: start firewalld
-    service:
-      name: firewalld
-      enabled: yes
-      state: started
-  - name: open https port on firewalld
-    firewalld:
-      service: https
-      permanent: true
-      immediate: true
-      state: enabled
 ...
 
