@@ -13,4 +13,5 @@ galaxy_info:
   - office
   - web
 
-dependencies: [joe-speedboat.mariadb]
+dependencies:
+- { role: joe-speedboat.mariadb }
