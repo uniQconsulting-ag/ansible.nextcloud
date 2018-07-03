@@ -1,5 +1,5 @@
 ---
-# defaults file for joe-speedboat.nextcloud
+# defaults file for joe_speedboat.nextcloud
 
 nextcloud_repo_url: https://download.nextcloud.com/server/releases
 nextcloud_version:  nextcloud-13.0.0

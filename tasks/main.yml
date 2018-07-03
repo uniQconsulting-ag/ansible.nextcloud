@@ -1,5 +1,5 @@
 ---
-# task file for joe-speedboat.nextcloud
+# task file for joe_speedboat.nextcloud
 - include_tasks: 'prerequisites.yml'
 
 - name: ensure {{ nextcloud_webroot }} is present

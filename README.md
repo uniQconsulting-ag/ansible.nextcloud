@@ -1,4 +1,4 @@
-joe-speedboat.nextcloud
+joe_speedboat.nextcloud
 =================
 
 * install nextcloud on centos 7
