@@ -22,4 +22,3 @@
       append_privs: no
   - role: joe-speedboat.nextcloud
 ...
-

@@ -129,4 +129,4 @@
   lineinfile:
     name: /root/.bashrc
     line: "alias occ='sudo -u nginx {{ nextcloud_webroot }}/occ'"
-
+...
