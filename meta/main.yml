@@ -14,4 +14,4 @@ galaxy_info:
   - web
 
 dependencies:
-- { role: joe-speedboat.mariadb }
+- { role: joe_speedboat.mariadb }
