@@ -1,4 +1,4 @@
-joe_speedboat.nextcloud
+joe_speedboat.ansible_nextcloud
 =================
 
 * install nextcloud on centos 7

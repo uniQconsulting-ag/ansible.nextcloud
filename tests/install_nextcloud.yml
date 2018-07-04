@@ -7,7 +7,7 @@
   - nextcloud_mysql_db_password: 'krypt0n.'
   - nextcloud_admin_pw: ChangeMe.
   roles:
-  - role: joe_speedboat.mariadb
+  - role: joe_speedboat.ansible_mariadb
     mariadb_secure_installation: yes
     mariadb_root_password: "{{ nextcloud_mysql_root_password }}"
     mariadb_databases:
@@ -20,7 +20,7 @@
       privs:
       - "{{ nextcloud_mysql_db }}.*:ALL"
       append_privs: no
-  - role: joe_speedboat.nextcloud
+  - role: joe_speedboat.ansible_nextcloud
   tasks:
   - name: install firewalld
     yum:

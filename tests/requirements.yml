@@ -1,5 +1,5 @@
 # from galaxy
-- src: joe_speedboat.mariadb
+- src: joe_speedboat.ansible_mariadb
   version: master
-- src: joe_speedboat.nextcloud
+- src: joe_speedboat.ansible_nextcloud
   version: master

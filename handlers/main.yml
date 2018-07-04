@@ -1,5 +1,5 @@
 ---
-# handlers file for joe_speedboat.nextcloud
+# handlers file for joe_speedboat.ansible_nextcloud
 
 - name: reload nginx
   service:
