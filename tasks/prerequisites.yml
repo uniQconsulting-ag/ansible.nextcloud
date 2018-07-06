@@ -1,5 +1,5 @@
 ---
-# prerequisites.yml file for joe_speedboat.ansible_nextcloud
+# prerequisites.yml file for joe-speedboat.ansible_nextcloud
 
 - name: ensure epel-relase and webtatic yum repos are installed
   yum:

@@ -14,4 +14,4 @@ galaxy_info:
   - web
 
 dependencies:
-- { role: joe_speedboat.ansible_mariadb }
+- { role: joe-speedboat.ansible_mariadb }
