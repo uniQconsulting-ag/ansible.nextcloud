@@ -31,6 +31,7 @@
     collabora_nginx_ssl_cert_key: "{{nextcloud_nginx_ssl_cert_key}}"
     collabora_nginx_ssl_cert_crt: "{{nextcloud_nginx_ssl_cert_crt}}"
     collabora_nginx_ssl_cert_chain: "{{nextcloud_nginx_ssl_cert_ca_chain}}"
+    collabora_yum_gpgcheck: no
   tasks:
   - name: install firewalld
     yum:
