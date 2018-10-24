@@ -1,5 +1,5 @@
 ---
-# task file for joe-speedboat.ansible_nextcloud
+# task file for uniQconsulting.nextcloud
 - include_tasks: 'prerequisites.yml'
 
 - name: ensure {{ nextcloud_webroot }} is present

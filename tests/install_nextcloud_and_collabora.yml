@@ -11,7 +11,7 @@
   - nextcloud_nginx_ssl_cert_crt: "{{nextcloud_nginx_ssl_cert_dir}}/{{nextcloud_fqdn}}_crt.pem"
   - nextcloud_nginx_ssl_cert_ca_chain: "{{nextcloud_nginx_ssl_cert_dir}}/{{nextcloud_fqdn}}_ca.pem"
   roles:
-  - role: joe-speedboat.ansible_mariadb
+  - role: uniQconsulting.mariadb
     mariadb_secure_installation: yes
     mariadb_root_password: "{{ nextcloud_mysql_root_password }}"
     mariadb_databases:
@@ -24,8 +24,8 @@
       privs:
       - "{{ nextcloud_mysql_db }}.*:ALL"
       append_privs: no
-  - role: joe-speedboat.ansible_nextcloud
-  - role: joe-speedboat.ansible_collabora
+  - role: uniQconsulting.nextcloud
+  - role: uniQconsulting.collabora
     collabora_admin_password: "{{nextcloud_admin_pw}}"
     collabora_nginx_ssl_cert_host: "{{nextcloud_fqdn}}"
     collabora_nginx_ssl_cert_key: "{{nextcloud_nginx_ssl_cert_key}}"

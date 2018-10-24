@@ -7,7 +7,7 @@
   - nextcloud_mysql_db_password: 'krypt0n.'
   - nextcloud_admin_pw: ChangeMe.
   roles:
-  - role: joe-speedboat.ansible_mariadb
+  - role: uniQconsulting.mariadb
     mariadb_secure_installation: yes
     mariadb_root_password: "{{ nextcloud_mysql_root_password }}"
     mariadb_databases:
@@ -20,5 +20,5 @@
       privs:
       - "{{ nextcloud_mysql_db }}.*:ALL"
       append_privs: no
-  - role: joe-speedboat.ansible_nextcloud
+  - role: uniQconsulting.nextcloud
 ...

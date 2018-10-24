@@ -1,10 +1,11 @@
 ---
 galaxy_info:
   author: Chris Ruettimann
-  company: Bitbull
+  company: uniQconsulting
   description: nextcloud installation and configuration
-  min_ansible_version: 1.7
-  license: GPL
+  role_name: nextcloud
+  min_ansible_version: 2.4
+  license: GPLv3
   platforms:
   - name: EL
     versions:
@@ -12,6 +13,7 @@ galaxy_info:
   categories:
   - office
   - web
+  - collaboration
 
 dependencies:
-- { role: joe-speedboat.ansible_mariadb }
+- { role: uniQconsulting.mariadb }
