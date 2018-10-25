@@ -1,6 +1,5 @@
 ---
 # defaults file for uniQconsulting.nextcloud
-
 nextcloud_repo_url: https://download.nextcloud.com/server/releases
 nextcloud_version:  nextcloud-14.0.3
 nextcloud_fqdn: "{{ansible_fqdn}}"
@@ -18,8 +17,29 @@ nextcloud_cert_store: "{{nextcloud_webroot}}/resources/config/ca-bundle.crt"
 nextcloud_admin_user: admin
 nextcloud_admin_pw: 'krypt0n!'
 nextcloud_max_upload_size: 16G
+nextcloud_php_memory_limit: 512M
 nextcloud_max_upload_time: 3600
 
 nextcloud_mysql_db: nextcloud
 nextcloud_mysql_root_password: '.R00T.'
 nextcloud_mysql_db_password: 'krypt0n.'
+
+collabora_admin_password: "{{nextcloud_admin_pw}}"
+collabora_nginx_ssl_cert_host: "{{nextcloud_fqdn}}"
+collabora_nginx_ssl_cert_key: "{{nextcloud_nginx_ssl_cert_key}}"
+collabora_nginx_ssl_cert_crt: "{{nextcloud_nginx_ssl_cert_crt}}"
+collabora_nginx_ssl_cert_chain: "{{nextcloud_nginx_ssl_cert_ca_chain}}"
+collabora_yum_gpgcheck: no
+
+mariadb_secure_installation: yes
+mariadb_root_password: "{{ nextcloud_mysql_root_password }}"
+mariadb_databases:
+- name: "{{ nextcloud_mysql_db }}"
+mariadb_users_create:
+- name: "{{ nextcloud_mysql_db }}"
+  hosts:
+  - localhost
+  password: "{{ nextcloud_mysql_db_password }}"
+  privs:
+  - "{{ nextcloud_mysql_db }}.*:ALL"
+  append_privs: no
