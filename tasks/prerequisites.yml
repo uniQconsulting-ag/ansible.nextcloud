@@ -3,16 +3,13 @@
 
 - name: ensure epel-relase and webtatic yum repos are installed
   yum:
-    name: '{{ item }}'
-    state: present
-  with_items:
+    name:
     - epel-release
     - https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
 
 - name: ensure required packages are installed
   yum:
-    name: '{{ item }}'
-  with_items:
+    name:
     - policycoreutils-python
     - lbzip2-utils
     - nginx
