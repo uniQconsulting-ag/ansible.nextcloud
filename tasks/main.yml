@@ -1,6 +1,8 @@
 ---
 # task file for uniQconsulting.nextcloud
-- include_tasks: 'prerequisites.yml'
+- import_tasks: include-vars.yml
+
+- include_tasks: prerequisites.yml
 
 - name: ensure {{ nextcloud_webroot }} is present
   file:
@@ -8,7 +10,7 @@
     state: directory
   register: new_installation
 
-- include_tasks: 'installation.yml'
+- include_tasks: installation.yml
   when: new_installation.changed
 
 - name: ensure .user.ini config is present
@@ -19,5 +21,5 @@
     - reload nginx
     - reload php-fpm
 
-- include_tasks: 'permissions.yml'
+- include_tasks: permissions.yml
 ...
