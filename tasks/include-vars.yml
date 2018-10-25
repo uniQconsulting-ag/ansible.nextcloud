@@ -2,7 +2,6 @@
 # tasks file for uniQconsulting.nextcloud
 - name: Load a variable file based on nodename , or a default if not found.
   include_vars: "{{ item }}"
-  with_items:
+  with_first_found:
     - "/etc/ansible/{{ ansible_nodename }}.yml"
     - ../defaults/main.yml
-  ignore_errors: yes
