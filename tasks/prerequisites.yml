@@ -92,10 +92,12 @@
     owner: root
     group: root
     mode: 0700
+  when: nextcloud_use_https
 
 - name: create/update self signed cert
   shell: /usr/local/sbin/create-nextcloud-cert.sh
   changed_when: False
+  when: nextcloud_use_https
 
 - name: ensure opcache settings are correct
   lineinfile:

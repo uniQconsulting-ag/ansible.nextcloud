@@ -23,6 +23,7 @@
 - name: add self signed ca {{nextcloud_nginx_ssl_cert_ca_chain}} to nextcloud cert store {{nextcloud_cert_store}}
   shell: cat {{nextcloud_nginx_ssl_cert_ca_chain}} >> {{nextcloud_cert_store}}
   changed_when: False
+  when: nextcloud_use_https
 
 - include_tasks: 'permissions.yml'
 

@@ -1,0 +1,31 @@
+---
+- hosts: vm22
+  vars:
+  - nextcloud_fqdn: "{{ ansible_fqdn }}"
+  - nextcloud_mysql_root_password: '.R00T.'
+  - nextcloud_mysql_db_password: 'krypt0n.'
+  - nextcloud_admin_pw: ChangeMe.
+  - nextcloud_use_https: false
+  roles:
+  - role: uniQconsulting.nextcloud
+  tasks:
+  - name: install firewalld
+    yum:
+      name: firewalld
+      state: present
+  - name: start firewalld
+    service:
+      name: firewalld
+      enabled: yes
+      state: started
+  - name: open http port on firewalld
+    firewalld:
+      service: http
+      permanent: true
+      state: enabled
+  - name: enable firewalld
+    service:
+      name: firewalld
+      enabled: yes
+      state: restarted
+...
