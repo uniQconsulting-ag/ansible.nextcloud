@@ -1,4 +1,4 @@
-# from galaxy
+# galaxy sources, needed by travis testing
 - src: uniQconsulting.mariadb
   version: master
 - src: uniQconsulting.nextcloud
