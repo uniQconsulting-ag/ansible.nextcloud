@@ -12,12 +12,14 @@
 # http://www.gnu.org/licenses/gpl.txt
 
 # INSTALL:
-#   1) 
-#   1)
-#   1)
-#   1)
-#   1)
-#   1)
+#   1) curl https://raw.githubusercontent.com/uniQconsulting-ag/ansible.nextcloud/master/tests/nc_benchmark.sh > /usr/local/sbin/nc_benchmark.sh
+#   2) chmod 700 /usr/local/sbin/nc_benchmark.sh
+#   3) vim /usr/local/sbin/nc_benchmark.sh # Fill at least this vars
+#         CLOUD
+#         PW
+#         USR
+#   4) /usr/local/sbin/nc_benchmark.sh
+#   5) optionally create cronjob to update results on a sheduled base
 
 # USEAGE:  
 #         $ nc_benchmark.sh
