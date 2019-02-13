@@ -33,7 +33,7 @@ then
    echo "------ Skip creation of ${CA_DIR}/ca/root.key.pem, it is already present"
 else
    echo "------ create root key"
-   openssl genrsa -out "${CA_DIR}/ca/root.key.pem"CA_KEYLEN
+   openssl genrsa -out "${CA_DIR}/ca/root.key.pem" $CA_KEYLEN
 fi
 if [ -f "${CA_DIR}/ca/root.crt.pem" ]
 then
@@ -61,7 +61,7 @@ else
    cp -v "${BASE_DIR}/servers/${HOST}_privkey.pem" "$KEY_COPY" ; chmod 640 "$KEY_COPY"
    cp -v "${BASE_DIR}/servers/${HOST}_cert.pem" "$CERT_COPY" ; chmod 644 "$CERT_COPY"
    cp -v "${BASE_DIR}/servers/${HOST}_ca_chain.pem" "$CA_CHAIN_COPY" ; chmod 644 "$CA_CHAIN_COPY"
-   chownCOPY_OWNER "$KEY_COPY" "$CERT_COPY" "$CA_CHAIN_COPY"
+   chown $COPY_OWNER "$KEY_COPY" "$CERT_COPY" "$CA_CHAIN_COPY"
    echo "--- done"
 fi
 
