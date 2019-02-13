@@ -20,15 +20,15 @@
     - php71w-opcache
     - php71w-common
     - php71w-xml
-    - php71w-gd 
+    - php71w-gd
     - php71w-xml
-    - php71w-mbstring 
+    - php71w-mbstring
     - php71w-intl
     - php71w-mcrypt
     - php71w-mysql
     - php71w-ldap
     - php71w-imap
-    - php71w-pecl-apcu 
+    - php71w-pecl-apcu
     - php71w-pecl-redis
     - php71w-pecl-imagick
     - php71w-process
@@ -38,7 +38,7 @@
   lineinfile:
     path: /etc/php.ini
     regexp: '^{{ item.option }}'
-    line: '{{ item.option }} = {{ item.value }}'    
+    line: '{{ item.option }} = {{ item.value }}'
   with_items:
     - { option: 'expose_php', value: 'Off' }
     - { option: 'max_input_time', value: '{{ nextcloud_max_upload_time }}' }
@@ -47,7 +47,7 @@
   notify:
     - reload php-fpm
     - reload nginx
-    
+
 - name: create /etc/php.d/pdo_mysql.ini
   template:
     src: pdo_mysql.ini.j2
@@ -76,7 +76,7 @@
   template:
     src: nextcloud.conf.j2
     dest: /etc/nginx/conf.d/nextcloud.conf
-  notify: 
+  notify:
     - reload nginx
 
 - name: create /etc/php-fpm.d/www.conf

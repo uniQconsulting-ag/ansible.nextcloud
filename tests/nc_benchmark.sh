@@ -21,7 +21,7 @@
 #   4) /usr/local/sbin/nc_benchmark.sh
 #   5) optionally create cronjob to update results on a sheduled base
 
-# USEAGE:  
+# USEAGE:
 #         $ nc_benchmark.sh
 
 
@@ -62,7 +62,7 @@ do
 done
 
 # prepare remote benchmark dirs
-$CURL $RDIR/$(basename $LLOG) -o "$LLOG" 2>/dev/null 
+$CURL $RDIR/$(basename $LLOG) -o "$LLOG" 2>/dev/null
 cat "$LLOG" 2>/dev/null | grep -q DATE || echo '#DATE;URL;USER;<UPLOAD|DOWNLOAD>;TEST;ERRORS;RESULTS' >  $LLOG
 $CURL "$RDIR/files/0.txt"  >/dev/null 2>&1 && $CURL $RDIR/ $CURL -X DELETE "$RDIR/files/" >/dev/null 2>&1
 $CURL -X MKCOL "$RDIR" >/dev/null 2>&1
@@ -86,7 +86,7 @@ TIME_BEFORE=$(date '+%s')
 for i in $(seq 1 $TEST_FILES_COUNT)
 do
    echo upload file $i.txt | egrep '[0-9]0.txt'
-   $CURL  -T "$LDIR/files/$i.txt" "$RDIR/files/" 
+   $CURL  -T "$LDIR/files/$i.txt" "$RDIR/files/"
    if [ $? -ne 0 ] ; then
       echo "error: could not upload $i.txt"
       UL_ERROR_CNT=$(($UL_ERROR_CNT+1))
@@ -102,7 +102,7 @@ TIME_BEFORE=$(date '+%s')
 for i in $(seq 1 $TEST_FILES_COUNT)
 do
    echo download file $i.txt | egrep '[0-9]0.txt'
-   $CURL  -o "$LDIR/files/$i.txt" "$RDIR/files/$i.txt" 
+   $CURL  -o "$LDIR/files/$i.txt" "$RDIR/files/$i.txt"
    if [ $? -ne 0 ] ; then
       echo "error: could not download $i.txt"
       DL_ERROR_CNT=$(($DL_ERROR_CNT+1))

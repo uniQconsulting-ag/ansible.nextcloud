@@ -59,7 +59,7 @@ else
    find "$BASE_DIR"
    echo "------ copy cert in place"
    cp -v "${BASE_DIR}/servers/${HOST}_privkey.pem" "$KEY_COPY" ; chmod 640 "$KEY_COPY"
-   cp -v "${BASE_DIR}/servers/${HOST}_cert.pem" "$CERT_COPY" ; chmod 644 "$CERT_COPY" 
+   cp -v "${BASE_DIR}/servers/${HOST}_cert.pem" "$CERT_COPY" ; chmod 644 "$CERT_COPY"
    cp -v "${BASE_DIR}/servers/${HOST}_ca_chain.pem" "$CA_CHAIN_COPY" ; chmod 644 "$CA_CHAIN_COPY"
    chown $COPY_OWNER "$KEY_COPY" "$CERT_COPY" "$CA_CHAIN_COPY"
    echo "--- done"
