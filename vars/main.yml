@@ -4,11 +4,11 @@ nextcloud_repo_url: https://download.nextcloud.com/server/releases
 nextcloud_nginx_ssl_cert_days: 3650
 nextcloud_nginx_ssl_cert_host: '{{ nextcloud_fqdn }}'
 nextcloud_nginx_ssl_cert_dir: /etc/nginx
-nextcloud_nginx_ssl_cert_key: "{{nextcloud_nginx_ssl_cert_dir}}/{{nextcloud_fqdn}}_key.pem"
-nextcloud_nginx_ssl_cert_crt: "{{nextcloud_nginx_ssl_cert_dir}}/{{nextcloud_fqdn}}_crt.pem"
-nextcloud_nginx_ssl_cert_ca_chain: "{{nextcloud_nginx_ssl_cert_dir}}/{{nextcloud_fqdn}}_ca.pem"
+nextcloud_nginx_ssl_cert_key: "{{ nextcloud_nginx_ssl_cert_dir }}/{{ nextcloud_fqdn }}_key.pem"
+nextcloud_nginx_ssl_cert_crt: "{{ nextcloud_nginx_ssl_cert_dir }}/{{ nextcloud_fqdn }}_crt.pem"
+nextcloud_nginx_ssl_cert_ca_chain: "{{ nextcloud_nginx_ssl_cert_dir }}/{{ nextcloud_fqdn }}_ca.pem"
 nextcloud_trusted_domains: ['localhost', '{{ nextcloud_fqdn }}']
-nextcloud_cert_store: "{{nextcloud_webroot}}/resources/config/ca-bundle.crt"
+nextcloud_cert_store: "{{ nextcloud_webroot }}/resources/config/ca-bundle.crt"
 nextcloud_admin_user: admin
 nextcloud_mysql_db: nextcloud
 

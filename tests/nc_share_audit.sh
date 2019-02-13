@@ -12,8 +12,8 @@
 # http://www.gnu.org/licenses/gpl.txt
 
 # USEAGE: start this script as root
-#         $ nc_share_audit.sh
-#         $  curl https://raw.githubusercontent.com/uniQconsulting-ag/ansible.nextcloud/master/tests/nc_share_audit.sh | sh
+#         nc_share_audit.sh
+#          curl https://raw.githubusercontent.com/uniQconsulting-ag/ansible.nextcloud/master/tests/nc_share_audit.sh | sh
 
 
 OCC='sudo -u nginx /srv/nextcloud/html/occ'

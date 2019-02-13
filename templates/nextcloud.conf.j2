@@ -52,10 +52,10 @@ server {
     # last;
 
     location = /.well-known/carddav {
-      return 301 $scheme://$host/remote.php/dav;
+      return 301scheme://$host/remote.php/dav;
     }
     location = /.well-known/caldav {
-      return 301 $scheme://$host/remote.php/dav;
+      return 301scheme://$host/remote.php/dav;
     }
 
     # set max upload size
@@ -88,8 +88,8 @@ server {
     location ~ ^/(?:index|remote|public|cron|core/ajax/update|status|ocs/v[12]|updater/.+|ocs-provider/.+)\.php(?:$|/) {
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_param SCRIPT_FILENAMEdocument_root$fastcgi_script_name;
+        fastcgi_param PATH_INFOfastcgi_path_info;
         {% if nextcloud_use_https %}fastcgi_param HTTPS on;{% endif %}
         #Avoid sending the security headers twice
         fastcgi_param modHeadersAvailable true;
@@ -100,14 +100,14 @@ server {
     }
 
     location ~ ^/(?:updater|ocs-provider)(?:$|/) {
-        try_files $uri/ =404;
+        try_filesuri/ =404;
         index index.php;
     }
 
     # Adding the cache control header for js and css files
     # Make sure it is BELOW the PHP block
     location ~ \.(?:css|js|woff|svg|gif)$ {
-        try_files $uri /index.php$uri$is_args$args;
+        try_filesuri /index.php$uri$is_args$args;
         add_header Cache-Control "public, max-age=15778463";
         # Add headers to serve security related headers (It is intended to
         # have those duplicated to the ones above)
@@ -131,7 +131,7 @@ server {
     }
 
     location ~ \.(?:png|html|ttf|ico|jpg|jpeg)$ {
-        try_files $uri /index.php$uri$is_args$args;
+        try_filesuri /index.php$uri$is_args$args;
         # Optional: Don't log access to other assets
         access_log off;
     }
