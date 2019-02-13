@@ -24,28 +24,28 @@ CERT_COPY="{{ nextcloud_nginx_ssl_cert_crt }}"
 CA_CHAIN_COPY="{{ nextcloud_nginx_ssl_cert_ca_chain }}"
 COPY_OWNER="root:nginx"
 
-mkdir -p{CA_DIR}/ca
-mkdir -p{BASE_DIR}/{servers,tmp}
+mkdir -p ${CA_DIR}/ca
+mkdir -p ${BASE_DIR}/{servers,tmp}
 
 cd "${BASE_DIR}" || exit 1
 if [ -f "${CA_DIR}/ca/root.key.pem" ]
 then
-   echo "------ Skip creation of{CA_DIR}/ca/root.key.pem, it is already present"
+   echo "------ Skip creation of ${CA_DIR}/ca/root.key.pem, it is already present"
 else
    echo "------ create root key"
    openssl genrsa -out "${CA_DIR}/ca/root.key.pem"CA_KEYLEN
 fi
 if [ -f "${CA_DIR}/ca/root.crt.pem" ]
 then
-   echo "------ Skip creation of{CA_DIR}/ca/root.crt.pem, it is already present"
+   echo "------ Skip creation of ${CA_DIR}/ca/root.crt.pem, it is already present"
 else
    echo "------ create intermediate cert"
    openssl req -x509 -new -nodes -key "${CA_DIR}/ca/root.key.pem" -daysDAYS -out "${CA_DIR}/ca/root.crt.pem" -subj "$CA_SUBJ"
 fi
 if [ -f "${BASE_DIR}/servers/${HOST}_privkey.pem" ]
 then
-   echo "------ ERROR:{BASE_DIR}/servers/${HOST}_privkey.pem this file should not exist, remove this files first:"
-   ls -l{BASE_DIR}/servers/${HOST}_*
+   echo "------ ERROR: ${BASE_DIR}/servers/${HOST}_privkey.pem this file should not exist, remove this files first:"
+   ls -l ${BASE_DIR}/servers/${HOST}_*
 else
    echo "------ create server private key"
    openssl genrsa -out "${BASE_DIR}/servers/${HOST}_privkey.pem"PRIV_KEYLEN -key "${BASE_DIR}/servers/${HOST}_privkey.pem"
