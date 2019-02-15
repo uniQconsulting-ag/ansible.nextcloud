@@ -2,18 +2,10 @@
 - hosts: vm21
   vars:
   - nextcloud_fqdn: "{{ ansible_fqdn }}"
-  - nextcloud_mysql_root_password: '.R00T.'
-  - nextcloud_mysql_db_password: 'krypt0n.'
   - nextcloud_admin_pw: ChangeMe.
   roles:
   - role: uniQconsulting.nextcloud
   - role: uniQconsulting.collabora
-    collabora_admin_password: "{{ nextcloud_admin_pw }}"
-    collabora_nginx_ssl_cert_host: "{{ nextcloud_fqdn }}"
-    collabora_nginx_ssl_cert_key: "{{ nextcloud_nginx_ssl_cert_key }}"
-    collabora_nginx_ssl_cert_crt: "{{ nextcloud_nginx_ssl_cert_crt }}"
-    collabora_nginx_ssl_cert_chain: "{{ nextcloud_nginx_ssl_cert_ca_chain }}"
-    collabora_yum_gpgcheck: no
   tasks:
   - name: install firewalld
     yum:

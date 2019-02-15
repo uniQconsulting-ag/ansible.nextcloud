@@ -145,6 +145,8 @@ server {
 # restart nginx
 # Admin > Settings > Collabora Online > Server: https://{{ nextcloud_fqdn }}
 # test it
+# NOTE: loolwsd.xml needs: ssl.enable=false, ssl.termination=true, public.nc.fqdn allowed
+#       https://github.com/nextcloud/server/issues/11278#issuecomment-450500413
 ###############################################################################
 #
 #    # static files
