@@ -135,4 +135,57 @@ server {
         # Optional: Don't log access to other assets
         access_log off;
     }
+
+###############################################################################
+# COLLABORA CODE CONFIGURATION WITH SSL OFFLOADING
+###############################################################################
+# comment in the block below
+# delete collabora nginx config file 
+# delete /etc/nginx/conf.d/collabora_ssl.conf
+# restart nginx
+# Admin > Settings > Collabora Online > Server: https://{{ nextcloud_fqdn }}
+# test it
+###############################################################################
+#
+#    # static files
+#    location ^~ /loleaflet {
+#        proxy_pass http://localhost:9980;
+#        proxy_set_header Host $http_host;
+#    }
+#
+#    # WOPI discovery URL
+#    location ^~ /hosting/discovery {
+#        proxy_pass http://localhost:9980;
+#        proxy_set_header Host $http_host;
+#    }
+#
+#    # Capabilities
+#    location ^~ /hosting/capabilities {
+#        proxy_pass http://localhost:9980;
+#        proxy_set_header Host $http_host;
+#    }
+#
+#    # main websocket
+#    location ~ ^/lool/(.*)/ws$ {
+#        proxy_pass http://localhost:9980;
+#        proxy_set_header Upgrade $http_upgrade;
+#        proxy_set_header Connection "Upgrade";
+#        proxy_set_header Host $http_host;
+#        proxy_read_timeout 36000s;
+#    }
+#
+#    # download, presentation and image upload
+#    location ~ ^/lool {
+#        proxy_pass http://localhost:9980;
+#        proxy_set_header Host $http_host;
+#    }
+#
+#    # Admin Console websocket
+#    location ^~ /lool/adminws {
+#        proxy_pass http://localhost:9980;
+#        proxy_set_header Upgrade $http_upgrade;
+#        proxy_set_header Connection "Upgrade";
+#        proxy_set_header Host $http_host;
+#        proxy_read_timeout 36000s;
+#    }
 }

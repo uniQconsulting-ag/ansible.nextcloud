@@ -1,5 +1,5 @@
 ---
-- hosts: vm22
+- hosts: vm21
   vars:
   - nextcloud_fqdn: "{{ ansible_fqdn }}"
   - nextcloud_mysql_root_password: '.R00T.'
