@@ -7,7 +7,7 @@
   - nextcloud_admin_pw: ChangeMe.
   - nextcloud_use_https: false
   roles:
-  - role: uniQconsulting.nextcloud
+  - role: uniqconsulting.nextcloud
   tasks:
   - name: install firewalld
     yum:

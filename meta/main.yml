@@ -16,4 +16,4 @@ galaxy_info:
   - collaboration
 
 dependencies:
-- { role: uniQconsulting.mariadb }
+- { role: uniqconsulting.mariadb }

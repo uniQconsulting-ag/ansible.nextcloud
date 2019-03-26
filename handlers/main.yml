@@ -1,5 +1,5 @@
 ---
-# handlers file for uniQconsulting.nextcloud
+# handlers file for uniqconsulting.nextcloud
 
 - name: reload nginx
   service:

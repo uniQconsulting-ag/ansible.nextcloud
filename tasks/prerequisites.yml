@@ -1,5 +1,5 @@
 ---
-# prerequisites.yml file for uniQconsulting.nextcloud
+# prerequisites.yml file for uniqconsulting.nextcloud
 
 - name: ensure epel-relase and webtatic yum repos are installed
   yum:

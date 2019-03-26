@@ -1,5 +1,5 @@
 ---
-# vars file for uniQconsulting.nextcloud
+# vars file for uniqconsulting.nextcloud
 nextcloud_repo_url: https://download.nextcloud.com/server/releases
 nextcloud_nginx_ssl_cert_days: 3650
 nextcloud_nginx_ssl_cert_host: '{{ nextcloud_fqdn }}'

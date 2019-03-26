@@ -6,7 +6,7 @@
   - nextcloud_mysql_db_password: 'krypt0n.'
   - nextcloud_admin_pw: ChangeMe.
   roles:
-  - role: uniQconsulting.nextcloud
+  - role: uniqconsulting.nextcloud
   tasks:
   - name: install firewalld
     yum:

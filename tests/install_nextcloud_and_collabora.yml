@@ -4,8 +4,8 @@
   - nextcloud_fqdn: "{{ ansible_fqdn }}"
   - nextcloud_admin_pw: ChangeMe.
   roles:
-  - role: uniQconsulting.nextcloud
-  - role: uniQconsulting.collabora
+  - role: uniqconsulting.nextcloud
+  - role: uniqconsulting.collabora
   tasks:
   - name: install firewalld
     yum:
