@@ -32,6 +32,12 @@
   become: true
   become_user: nginx
 
+- name: installation - ensure mariadb is using charset
+  command: 'php {{ nextcloud_webroot }}/occ occ config:system:set mysql.utf8mb4 --type boolean --value="true"'
+  become: true
+  become_user: nginx
+
+
 - name: installation - ensure trusted domains are set
   command: 'php {{ nextcloud_webroot }}/occ config:system:set trusted_domains {{ item.0 }} --value "{{ item.1 }}"'
   become: true
@@ -63,3 +69,14 @@
   command: 'php {{ nextcloud_webroot }}/occ config:system:set asset-pipeline.enabled --value true'
   become: true
   become_user: nginx
+
+- name: cleanup - verify, everything is configured as recomended
+  command: 'php {{ nextcloud_webroot }}/occ maintenance:repair'
+  become: true
+  become_user: nginx
+
+- name: cleanup - make sure db is using bigint since installation does not care
+  command: 'php {{ nextcloud_webroot }}/occ db:convert-filecache-bigint -n'
+  become: true
+  become_user: nginx
+...
