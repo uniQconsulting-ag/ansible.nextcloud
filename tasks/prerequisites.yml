@@ -32,7 +32,6 @@
     - php71w-pecl-redis
     - php71w-pecl-imagick
     - php71w-process
-    - libreoffice
 
 - name: ensure php options are set
   lineinfile:
