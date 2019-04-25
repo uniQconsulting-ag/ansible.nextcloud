@@ -127,4 +127,12 @@
   lineinfile:
     name: /root/.bashrc
     line: "alias occ='sudo -u nginx {{ nextcloud_webroot }}/occ'"
+
+- name: create /etc/my.cnf.d/nextcloud.cnf
+  copy:
+    src: nextcloud.cnf
+    dest: /etc/my.cnf.d/nextcloud.cnf
+  notify:
+    - restart mariadb
+
 ...
