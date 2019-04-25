@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Chris Ruettimann
-  company: uniQconsulting
+  company: uniqconsulting
   description: nextcloud installation and configuration
   role_name: nextcloud
   min_ansible_version: 2.4
