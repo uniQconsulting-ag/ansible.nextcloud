@@ -70,6 +70,10 @@
   become: true
   become_user: nginx
 
+- name: give time to prepare for maintenance
+  pause:
+    seconds: 10
+
 - name: cleanup - verify, everything is configured as recomended
   command: 'php {{ nextcloud_webroot }}/occ maintenance:repair'
   become: true
