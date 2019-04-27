@@ -36,7 +36,7 @@
   command: 'php {{ nextcloud_webroot }}/occ config:system:set mysql.utf8mb4 --type boolean --value="true"'
   become: true
   become_user: nginx
-
+  notify: restart mariadb
 
 - name: installation - ensure trusted domains are set
   command: 'php {{ nextcloud_webroot }}/occ config:system:set trusted_domains {{ item.0 }} --value "{{ item.1 }}"'
@@ -69,10 +69,6 @@
   command: 'php {{ nextcloud_webroot }}/occ config:system:set asset-pipeline.enabled --value true'
   become: true
   become_user: nginx
-
-- name: give time to prepare for maintenance
-  pause:
-    seconds: 10
 
 - name: cleanup - verify, everything is configured as recomended
   command: 'php {{ nextcloud_webroot }}/occ maintenance:repair'
