@@ -45,12 +45,12 @@
     - '{{ nextcloud_trusted_domains  }}'
 
 - name: installation - set session timeout
-  command: 'php {{ nextcloud_webroot }}/occ config:system:set session_lifetime --type=string --value="{{ nextcloud_session_timeout }}"'
+  command: 'php {{ nextcloud_webroot }}/occ config:system:set session_lifetime --type=integer --value="{{ nextcloud_session_timeout }}"'
   become: true
   become_user: nginx
 
 - name: installation - set cookie lifetime
-  command: 'php {{ nextcloud_webroot }}/occ config:system:set remember_login_cookie_lifetime --type=string --value="{{ nextcloud_cookie_lifetime }}"'
+  command: 'php {{ nextcloud_webroot }}/occ config:system:set remember_login_cookie_lifetime --type=integer --value="{{ nextcloud_cookie_lifetime }}"'
   become: true
   become_user: nginx
 
