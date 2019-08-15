@@ -9,6 +9,8 @@ nextcloud_admin_pw: 'krypt0n!'
 nextcloud_max_upload_size: 16G
 nextcloud_php_memory_limit: 512M
 nextcloud_max_upload_time: 3600
+nextcloud_session_timeout: 3600  # 1 Hour
+nextcloud_cookie_lifetime: 28800 # 8 Hours
 
 nextcloud_mysql_root_password: '.R00T.'
 nextcloud_mysql_db_password: 'krypt0n.'
