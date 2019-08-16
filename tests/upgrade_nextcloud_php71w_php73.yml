@@ -1,0 +1,50 @@
+---
+- hosts: vm21
+  vars:
+  - nextcloud_fqdn: "{{ ansible_fqdn }}"
+  - nextcloud_mysql_root_password: '.R00T.'
+  - nextcloud_mysql_db_password: 'krypt0n.'
+  - nextcloud_admin_pw: ChangeMe.
+  roles:
+  - role: uniqconsulting.nextcloud
+  tasks:
+  - name: install firewalld
+    yum:
+      name: firewalld
+      state: present
+  - name: start firewalld
+    service:
+      name: firewalld
+      enabled: yes
+      state: started
+  - name: open https port on firewalld
+    firewalld:
+      service: https
+      permanent: true
+      state: enabled
+  - name: enable firewalld
+    service:
+      name: firewalld
+      enabled: yes
+      state: restarted
+
+  # Remove old version and stop services
+  pre_tasks:
+  - name: stop nginx
+    systemd:
+      name: nginx
+      state: stopped
+  - name: stop php-fpm
+    systemd:
+      name: php-fpm
+      state: stopped
+  - name: remove php71w
+    yum:
+      name: php71w*
+      state: absent
+  - name: remove webtatic repo
+    yum:
+      name: webtatic-release
+      state: remove
+
+...

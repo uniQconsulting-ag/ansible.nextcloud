@@ -1,56 +1,32 @@
 ---
 # prerequisites.yml file for uniqconsulting.nextcloud
 
-- name: ensure epel-relase and webtatic yum repos are installed
+- name: ensure epel-relase and remi yum repos are installed
   yum:
-    name:
-    - epel-release
-    - https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+    name: "{{ nextcloud_repos }}"
 
 - name: ensure required packages are installed
   yum:
-    name:
-    - policycoreutils-python
-    - lbzip2-utils
-    - nginx
-    - openssl
-    - MySQL-python
-    - redis
-    - php71w-fpm
-    - php71w-opcache
-    - php71w-common
-    - php71w-xml
-    - php71w-gd
-    - php71w-xml
-    - php71w-mbstring
-    - php71w-intl
-    - php71w-mcrypt
-    - php71w-mysql
-    - php71w-ldap
-    - php71w-imap
-    - php71w-pecl-apcu
-    - php71w-pecl-redis
-    - php71w-pecl-imagick
-    - php71w-process
+    name: "{{ nextcloud_packages }}"
 
-- name: ensure php options are set
-  lineinfile:
-    path: /etc/php.ini
-    regexp: '^{{ item.option }}'
-    line: '{{ item.option }} = {{ item.value }}'
-  with_items:
-    - { option: 'expose_php', value: 'Off' }
-    - { option: 'max_input_time', value: '{{ nextcloud_max_upload_time }}' }
-    - { option: 'max_execution_time', value: '{{ nextcloud_max_upload_time }}' }
-    - { option: 'memory_limit', value: '{{ nextcloud_php_memory_limit }}' }
-  notify:
-    - reload php-fpm
-    - reload nginx
+- name: ensure required php packages are installed
+  yum:
+    name: "{{ nextcloud_php_packages }}"
 
-- name: create /etc/php.d/pdo_mysql.ini
+- name: create {{ nextcloud_php_phpini }}
+  template:
+    src: php.ini.j2
+    dest: {{ nextcloud_php_phpini }}
+
+- name: create {{ nextcloud_php_wwwconf }}
+  template:
+    src: www.conf.j2
+    dest: {{ nextcloud_php_wwwconf }}
+
+- name: create {{ nextcloud_php_pdoini }}
   template:
     src: pdo_mysql.ini.j2
-    dest: /etc/php.d/pdo_mysql.ini
+    dest: {{ nextcloud_php_pdoini }}
 
 - name: ensure directory for php sessions exists and has nginx as owner
   file:
@@ -78,12 +54,6 @@
   notify:
     - reload nginx
 
-- name: create /etc/php-fpm.d/www.conf
-  copy:
-    src: www.conf
-    dest: /etc/php-fpm.d/www.conf
-  notify: reload php-fpm
-
 - name: copy selfsigned ssl cert creator script
   template:
     src: create-nextcloud-cert.sh.j2
@@ -98,25 +68,10 @@
   changed_when: False
   when: nextcloud_use_https
 
-- name: ensure opcache settings are correct
-  lineinfile:
-    path: /etc/php.d/opcache.ini
-    regexp: '^{{ item.name }}='
-    line: '{{ item.name }}={{ item.value }}'
-  with_items:
-    - { name: opcache.enable, value: 1 }
-    - { name: opcache.enable_cli, value: 1 }
-    - { name: opcache.interned_strings_buffer, value: 8 }
-    - { name: opcache.max_accelerated_files, value: 10000 }
-    - { name: opcache.memory_consumption, value: 128 }
-    - { name: opcache.save_comments, value: 1 }
-    - { name: opcache.revalidate_freq, value: 1 }
-  notify: restart php-fpm
-
 - name: ensure nginx, php-fpm and redis are enabled and running
   service:
     name: '{{ item }}'
-    state: started
+    state: restarted
     enabled: yes
   with_items:
     - php-fpm
