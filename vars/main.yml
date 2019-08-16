@@ -58,11 +58,10 @@ nextcloud_php_packages:
 - php73-php-pecl-apcu
 - php73-php-pecl-igbinary
 - php73-php-pecl-imagick
-- php73-php-pecl-redisvi 
+- php73-php-phpiredis
 - php73-php-process
 - php73-php-xml
 - php73-php-zip
-- php73-php-ssl
 
 nextcloud_php_pdoini: /etc/opt/remi/php73/php.d/pdo_mysql.ini
 nextcloud_php_wwwconf: /etc/opt/remi/php73/php-fpm.d/www.conf

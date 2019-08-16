@@ -16,17 +16,17 @@
 - name: create {{ nextcloud_php_phpini }}
   template:
     src: php.ini.j2
-    dest: {{ nextcloud_php_phpini }}
+    dest: "{{ nextcloud_php_phpini }}"
 
 - name: create {{ nextcloud_php_wwwconf }}
   template:
     src: www.conf.j2
-    dest: {{ nextcloud_php_wwwconf }}
+    dest: "{{ nextcloud_php_wwwconf }}"
 
 - name: create {{ nextcloud_php_pdoini }}
   template:
     src: pdo_mysql.ini.j2
-    dest: {{ nextcloud_php_pdoini }}
+    dest: "{{ nextcloud_php_pdoini }}"
 
 - name: ensure directory for php sessions exists and has nginx as owner
   file:
