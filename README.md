@@ -35,6 +35,11 @@ Example playbooks for this role are located in ´test´ folder:
 * `tests/install_nextcloud_https.yml`
 * `tests/install_nextcloud_http.yml`
 
+Additional example playbooks to update & upgrade nextclodu:
+* `upgrade_nextcloud_php71w_php73.yml` runs the normal install task as well as removing webtatic-php71
+* `update_nextcloud.yml` downloads the update and applys it. (The old version of the html-dir will be saved at the same location as html_TIMESTAMP)
+  Manual pasting of link necessary.
+
 uniQconsulting ag
 -----------------
 
