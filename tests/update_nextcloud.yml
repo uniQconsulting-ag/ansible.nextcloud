@@ -9,7 +9,7 @@
   tasks:
 
   - name: Maintenance Mode
-    shell: "sudo -u nginx {{ nextcloud_webroot }}/occ maintenance:mode --maintenance:mode --on"
+    shell: "sudo -u nginx php73 /srv/nextcloud/html/occ maintenance:mode --maintenance:mode --on"
 
   - name: Move current html
     command: "mv /srv/nextcloud/html /srv/nextcloud/html_{{ ansible_date_time.epoch }}"
@@ -65,6 +65,6 @@
     - db:add-missing-indices
 
   - name: Maintenance Mode
-    shell: "sudo -u nginx {{ nextcloud_webroot }}/occ maintenance:mode --maintenance:mode --off"
+    shell: "sudo -u nginx php73 /srv/nextcloud/html/occ maintenance:mode --maintenance:mode --off"
 
 ...

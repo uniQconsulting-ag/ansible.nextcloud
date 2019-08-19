@@ -31,11 +31,11 @@
   # Remove old version and stop services
   tasks:
   - name: Maintenance Mode
-    shell: "sudo -u nginx {{ nextcloud_webroot }}/occ maintenance:mode --maintenance:mode --off"
+    shell: "sudo -u nginx php73 {{ nextcloud_webroot }}/occ maintenance:mode --maintenance:mode --off"
 
   pre_tasks:
   - name: Maintenance Mode
-    shell: "sudo -u nginx {{ nextcloud_webroot }}/occ maintenance:mode --maintenance:mode --on"
+    shell: "sudo -u nginx php {{ nextcloud_webroot }}/occ maintenance:mode --maintenance:mode --on"
   - name: stop nginx
     systemd:
       name: nginx
