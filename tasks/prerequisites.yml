@@ -81,7 +81,7 @@
 - name: ensure alias for the occ command exists in /root/.bashrc
   lineinfile:
     name: /root/.bashrc
-    line: "alias occ='sudo -u nginx {{ nextcloud_webroot }}/occ'"
+    line: "alias occ='sudo -u nginx php73 {{ nextcloud_webroot }}/occ'"
 
 - name: create /etc/my.cnf.d/nextcloud.cnf
   copy:
