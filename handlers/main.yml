@@ -8,12 +8,12 @@
 
 - name: reload php-fpm
   service:
-    name: php-fpm
+    name: php73-php-fpm
     state: reloaded
 
 - name: restart php-fpm
   service:
-    name: php-fpm
+    name: php73-php-fpm
     state: restarted
 
 - name: restart mariadb

@@ -1,0 +1,72 @@
+---
+
+####
+# This Playbooks updates nextcloud the provieded version
+####
+
+
+- hosts: localhost
+  tasks:
+
+  - name: Maintenance Mode
+    shell: "sudo -u nginx php73 /srv/nextcloud/html/occ maintenance:mode --maintenance:mode --on"
+
+  - name: Move current html
+    command: "mv /srv/nextcloud/html /srv/nextcloud/html_{{ ansible_date_time.epoch }}"
+
+  - name: Create Update dir
+    file:
+      path: /srv/nextcloud/update
+      state: directory
+
+  - name: Download ZIP
+    get_url:
+      url: https://download.nextcloud.com/server/releases/nextcloud-16.0.4.zip #  https://download.nextcloud.com/server/releases/nextcloud-15.0.11.zip  
+      dest: /srv/nextcloud/update/nextcloud.zip
+
+  - name: Unpack ZIP
+    unarchive:
+      src: /srv/nextcloud/update/nextcloud.zip
+      dest: /srv/nextcloud/update
+      remote_src: yes
+
+  - name: rename source
+    shell: mv /srv/nextcloud/update/nextcloud /srv/nextcloud/update/html
+
+  - name: move source
+    shell: mv /srv/nextcloud/update/html /srv/nextcloud/
+
+  - name: Copy data
+    shell: /bin/cp -fr /srv/nextcloud/html_{{ ansible_date_time.epoch }}/config/config.php /srv/nextcloud/html/config/config.php
+
+  - name: Copy data
+    shell: ls /srv/nextcloud/html_{{ ansible_date_time.epoch }}/{{ item }} | xargs -L {} test -d /srv/nextcloud/html/{{ item }}/{} ||  /bin/cp -nr /srv/nextcloud/html_{{ ansible_date_time.epoch }}/{{ item }}/{}  /srv/nextcloud/html/{{ item }}/{}
+    with_items:
+    - apps
+    - themes
+
+  - name: delete update dir
+    file:
+      path: /srv/nextcloud/update
+      state: absent
+
+  - name: change owner
+    file:
+      path: /srv/nextcloud/html
+      state: directory
+      owner: nginx
+      group: nginx
+      recurse: true
+
+  - name: Run upgrade
+    shell: sudo -u nginx php73 /srv/nextcloud/html/occ {{ item }}
+    with_items:
+    - upgrade
+    - maintenance:update:htaccess
+    - integrity:check-core
+    - db:add-missing-indices
+
+  - name: Maintenance Mode
+    shell: "sudo -u nginx php73 /srv/nextcloud/html/occ maintenance:mode --maintenance:mode --off"
+
+...
