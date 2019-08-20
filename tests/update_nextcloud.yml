@@ -37,10 +37,12 @@
     shell: mv /srv/nextcloud/update/html /srv/nextcloud/
 
   - name: Copy data
-    shell: /bin/cp -fr /srv/nextcloud/html_{{ ansible_date_time.epoch }}/{{ item }} /srv/nextcloud/html/{{ item }}
+    shell: /bin/cp -fr /srv/nextcloud/html_{{ ansible_date_time.epoch }}/config/config.php /srv/nextcloud/html/config/config.php
+
+  - name: Copy data
+    shell: ls /srv/nextcloud/html_{{ ansible_date_time.epoch }}/{{ item }} | xargs -L {} test -d /srv/nextcloud/html/{{ item }}/{} ||  /bin/cp -nr /srv/nextcloud/html_{{ ansible_date_time.epoch }}/{{ item }}/{}  /srv/nextcloud/html/{{ item }}/{}
     with_items:
     - apps
-    - config/config.php
     - themes
 
   - name: delete update dir
