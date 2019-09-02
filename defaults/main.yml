@@ -1,17 +1,31 @@
 ---
 # defaults file for uniqconsulting.nextcloud
-nextcloud_version:  nextcloud-15.0.7
+
+# System-Settings
+nextcloud_version:  nextcloud-16.0.4
 nextcloud_fqdn: "{{ ansible_fqdn }}"
 nextcloud_use_https: true
 nextcloud_webroot: /srv/nextcloud/html
 nextcloud_dataroot: /srv/nextcloud/data
 nextcloud_admin_pw: 'krypt0n!'
+
+# PHP-Settings
 nextcloud_max_upload_size: 16G
 nextcloud_php_memory_limit: 512M
 nextcloud_max_upload_time: 3600
+
+# App-Settings
 nextcloud_session_timeout: 3600  # 1 Hour
 nextcloud_cookie_lifetime: 28800 # 8 Hours
+nextcloud_hide_resetpassword: yes
+nextcloud_trashbin_retention: 30 # in days
+nextcloud_release_channel: production # In most casses production, if newer versions needed go stable
+nextcloud_overwrite_https: "{{ nextcloud_use_https }}"
+nextcloud_trusted_proxies: # if external ssl_offloading add proxy; id equals position in php-array (needs to be incremental)
+- id: 0
+  ip: 127.0.0.1
 
+# mysql
 nextcloud_mysql_root_password: '.R00T.'
 nextcloud_mysql_db_password: 'krypt0n.'
 ...

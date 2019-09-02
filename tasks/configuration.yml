@@ -1,0 +1,42 @@
+---
+# configure app-settings
+- name: configuration - set session timeout
+  command: 'php {{ nextcloud_webroot }}/occ config:system:set session_lifetime --type=integer --value="{{ nextcloud_session_timeout }}"'
+  become: true
+  become_user: nginx
+
+- name: configuration - set cookie lifetime
+  command: 'php {{ nextcloud_webroot }}/occ config:system:set remember_login_cookie_lifetime --type=integer --value="{{ nextcloud_cookie_lifetime }}"'
+  become: true
+  become_user: nginx
+
+
+- name: configuration - set hide password-reset 
+  command: 'php {{ nextcloud_webroot }}/occ config:system:set lost_password_link --type=string --value="{{ "disabled" if nextcloud_hide_resetpassword == true else "enabled" }}"'
+  become: true
+  become_user: nginx
+
+- name: configuration - set trashbin retention
+  command: 'php {{ nextcloud_webroot }}/occ config:system:set trashbin_retetntion_obligation --type=string --value="auto,{{ nextcloud_trashbin_retention }}"'
+  become: true
+  become_user: nginx
+
+- name: configuration - set release channel
+  command: 'php {{ nextcloud_webroot }}/occ config:system:set updater.release.channel --type=string --value="{{ nextcloud_release_channel }}"'
+  become: true
+  become_user: nginx
+
+- name: configuration - set overwrite protocol
+  command: 'php {{ nextcloud_webroot }}/occ config:system:set overwriteprotocol --type=string --value="https"'
+  become: true
+  become_user: nginx
+  when: nextcloud_overwrite_https == true
+
+- name: configuration - set trusted_proxies
+  command: 'php {{ nextcloud_webroot }}/occ config:system:set trusted_proxies {{ item.id }} --value="{{ item.ip }}"'
+  become: true
+  become_user: nginx
+  with_items: "{{ nextcloud_trusted_proxies }}"
+
+
+...
