@@ -18,6 +18,12 @@
     src: php.ini.j2
     dest: "{{ nextcloud_php_phpini }}"
 
+- name: Symlink php
+  file:
+    state: link
+    src: "{{ nextcloud_php_binsrc }}"
+    dest: /usr/bin/php
+
 - name: create {{ nextcloud_php_wwwconf }}
   template:
     src: www.conf.j2

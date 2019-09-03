@@ -66,4 +66,5 @@ nextcloud_php_packages:
 nextcloud_php_pdoini: /etc/opt/remi/php73/php.d/pdo_mysql.ini
 nextcloud_php_wwwconf: /etc/opt/remi/php73/php-fpm.d/www.conf
 nextcloud_php_phpini: /etc/opt/remi/php73/php.ini
+nextcloud_php_binsrc: /usr/bin/php73
 ...
