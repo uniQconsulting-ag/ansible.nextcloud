@@ -13,6 +13,9 @@
 - include_tasks: installation.yml
   when: new_installation.changed
 
+- include_tasks: configuration.yml
+  when: new_installation.changed
+
 - name: ensure .user.ini config is present
   template:
     src: user.ini.j2
