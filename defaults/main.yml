@@ -8,6 +8,7 @@ nextcloud_use_https: true
 nextcloud_webroot: /srv/nextcloud/html
 nextcloud_dataroot: /srv/nextcloud/data
 nextcloud_admin_pw: 'krypt0n!'
+nextcloud_trusted_domains: ['localhost', '{{ nextcloud_fqdn }}']
 
 # PHP-Settings
 nextcloud_max_upload_size: 16G
