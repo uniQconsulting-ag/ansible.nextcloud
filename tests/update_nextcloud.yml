@@ -9,7 +9,7 @@
   tasks:
 
   - name: Maintenance Mode
-    shell: "sudo -u nginx php73 /srv/nextcloud/html/occ maintenance:mode --maintenance:mode --on"
+    shell: "sudo -u nginx php73 /srv/nextcloud/html/occ maintenance:mode --on"
 
   - name: Move current html
     command: "mv /srv/nextcloud/html /srv/nextcloud/html_{{ ansible_date_time.epoch }}"
@@ -21,7 +21,7 @@
 
   - name: Download ZIP
     get_url:
-      url: https://download.nextcloud.com/server/releases/nextcloud-16.0.4.zip #  https://download.nextcloud.com/server/releases/nextcloud-15.0.11.zip  
+      url: https://download.nextcloud.com/server/releases/nextcloud-16.0.6.zip
       dest: /srv/nextcloud/update/nextcloud.zip
 
   - name: Unpack ZIP
@@ -40,10 +40,10 @@
     shell: /bin/cp -fr /srv/nextcloud/html_{{ ansible_date_time.epoch }}/config/config.php /srv/nextcloud/html/config/config.php
 
   - name: Copy data
-    shell: ls /srv/nextcloud/html_{{ ansible_date_time.epoch }}/{{ item }} | xargs -L {} test -d /srv/nextcloud/html/{{ item }}/{} ||  /bin/cp -nr /srv/nextcloud/html_{{ ansible_date_time.epoch }}/{{ item }}/{}  /srv/nextcloud/html/{{ item }}/{}
-    with_items:
-    - apps
-    - themes
+    shell: ls /srv/nextcloud/html_{{ ansible_date_time.epoch }}/apps | xargs -I {} sh -c 'test -d /srv/nextcloud/html/apps/{} ||  /bin/cp -nr /srv/nextcloud/html_{{ ansible_date_time.epoch }}/apps/{}  /srv/nextcloud/html/apps/{}'
+
+  - name: Copy data
+    shell: ls /srv/nextcloud/html_{{ ansible_date_time.epoch }}/themes | xargs -I {} sh -c 'test -d /srv/nextcloud/html/themes/{} ||  /bin/cp -nr /srv/nextcloud/html_{{ ansible_date_time.epoch }}/themes/{}  /srv/nextcloud/html/themes/{}'
 
   - name: delete update dir
     file:
@@ -67,6 +67,6 @@
     - db:add-missing-indices
 
   - name: Maintenance Mode
-    shell: "sudo -u nginx php73 /srv/nextcloud/html/occ maintenance:mode --maintenance:mode --off"
+    shell: "sudo -u nginx php73 /srv/nextcloud/html/occ maintenance:mode --off"
 
 ...
