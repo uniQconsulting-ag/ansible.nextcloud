@@ -2,7 +2,7 @@
 # defaults file for uniqconsulting.nextcloud
 
 # System-Settings
-nextcloud_version:  nextcloud-16.0.4
+nextcloud_version:  nextcloud-20.0.2
 nextcloud_fqdn: "{{ ansible_fqdn }}"
 nextcloud_use_https: true
 nextcloud_webroot: /srv/nextcloud/html

@@ -1,17 +1,26 @@
 ---
 # prerequisites.yml file for uniqconsulting.nextcloud
 
+- name: Import GPG keys
+  rpm_key:
+    key: "{{ item }}"
+    state: present
+  with_items: "{{ vars['nextcloud_repo_keys_' + ( ansible_distribution | lower ) + ( ansible_distribution_major_version | lower ) ] }}"
+
 - name: ensure epel-relase and remi yum repos are installed
   yum:
-    name: "{{ nextcloud_repos }}"
+    name: "{{ vars['nextcloud_repos_' + ( ansible_distribution | lower ) + ( ansible_distribution_major_version | lower ) ] }}" 
+    state: installed
 
 - name: ensure required packages are installed
   yum:
-    name: "{{ nextcloud_packages }}"
+    name: "{{ vars['nextcloud_packages_' + ( ansible_distribution | lower ) + ( ansible_distribution_major_version | lower ) ] }}"
+    state: installed
 
 - name: ensure required php packages are installed
   yum:
-    name: "{{ nextcloud_php_packages }}"
+    name: "{{ vars['nextcloud_php_packages_' + ( ansible_distribution | lower ) + ( ansible_distribution_major_version | lower ) ] }}"
+    state: installed
 
 - name: create {{ nextcloud_php_phpini }}
   template:
