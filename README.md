@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/uniQconsulting-ag/ansible.os-basic.svg?branch=master)](https://travis-ci.org/uniQconsulting-ag/ansible.nextcloud)
 
-[![Alt text](https://www.uniqconsulting.ch/images/logo.png)](https://www.uniqconsulting.ch/)
+[![uniQconsulting Logo](https://avatars1.githubusercontent.com/u/43483026?s=200&v=4)](https://www.uniqconsulting.ch/)
 
 Nextcloud Setup with Ansible
 =================
